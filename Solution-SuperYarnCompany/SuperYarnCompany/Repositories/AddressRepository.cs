@@ -1,11 +1,12 @@
 ﻿using SuperYarnCompany.Context;
+using SuperYarnCompany.Entities;
 
 namespace SuperYarnCompany.Repositories;
 
-internal class AddressEntity : Repo<AddressEntity>
+internal class AddressRepository : Repo<AddressEntity>
 {
     private readonly DataContext _context;
-    public AddressEntity(DataContext context)  : base(context)
+    public AddressRepository(DataContext context)  : base(context)
         {
             _context = context;
         }
