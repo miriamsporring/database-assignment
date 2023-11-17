@@ -28,11 +28,14 @@ internal class Program
 
         // Menus
         services.AddScoped<MainMenu>();
+        services.AddScoped<CustomerMenu>();
+        services.AddScoped<ProductMenu>();
 
 
         using var sp = services.BuildServiceProvider();
 
-        var mainMenu = sp.GetRequiredService<MainMenu>(); //skickar programmet till startmenyn
+
+        var mainMenu = sp.GetRequiredService<MainMenu>(); //skickar programmet till startmenyn, FUNKAR NU
         await mainMenu.MainMenuAsync(); 
 
     }

@@ -1,5 +1,5 @@
-﻿using SuperYarnCompany.Context;
-using SuperYarnCompany.Entities;
+﻿using SuperYarnCompany.Entities;
+using SuperYarnCompany.Models;
 using SuperYarnCompany.Repositories;
 
 namespace SuperYarnCompany.Services;
@@ -17,28 +17,51 @@ internal class CustomerService
         _customerRepository = customerRepository;
     }
 
-    public async Task<CustomerEntity> CreateCustomerAsync(CustomerEntity customerEntity)
+    // CREATE
+    public async Task<bool> CreateCustomerAsync(CustomerRegistrationForm form)
     {
-        // get or create address
-        var addressEntity = await _addressRepository.GetAsync(x => x.StreetName == customerEntity.Address.StreetName);
-        addressEntity ??= await _addressRepository.CreateAsync(new AddressEntity { StreetName = customerEntity.Address.StreetName, StreetNumber = customerEntity.Address.StreetNumber, PostalCode = customerEntity.Address.PostalCode, City = customerEntity.Address.City});
+        if (!await _customerRepository.ExistsAsync(x => x.Email == form.Email))
+        {
+            // get or create address
+            var addressEntity = await _addressRepository.GetAsync(x => x.StreetName == form.StreetName);
+            addressEntity ??= await _addressRepository.CreateAsync(new AddressEntity { StreetName = form.StreetName, StreetNumber = form.StreetNumber, PostalCode = form.PostalCode, City = form.City });
 
-        // get or create customer type
-        var customerTypeEntity = await _customerTypeRepository.GetAsync(x => x.TypeName == customerEntity.CustomerType.TypeName);
-        customerTypeEntity ??= await _customerTypeRepository.CreateAsync(new CustomerTypeEntity { TypeName = customerEntity.CustomerType.TypeName });
+            // get or create customer type
+            var customerTypeEntity = await _customerTypeRepository.GetAsync(x => x.TypeName == form.CustomerType);
+            customerTypeEntity ??= await _customerTypeRepository.CreateAsync(new CustomerTypeEntity { TypeName = form.CustomerType });
 
-        customerEntity.AddressId = addressEntity.Id;
-        customerEntity.CustomerTypeId = customerTypeEntity.Id;
+            var customerEntity = await _customerRepository.CreateAsync(new CustomerEntity()
+            {
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                CustomerTypeId = customerTypeEntity.Id,
+                Email = form.Email,
+                AddressId = addressEntity.Id
 
-        // create customer
-        return await _customerRepository.CreateAsync(customerEntity);
+            });
+
+            if (customerEntity != null)
+            {
+                return true;
+            }
+           
+        }
+        return false;
 
     }
 
-    //public async Task<CustomerEntity> GetCustomerAsync(string email) //se dagens inspelning 15/11
-    //{
+    public async Task<bool> GetCustomerAsync(CustomerRegistrationForm form)
 
-    //}
+    {
+       if(!await _customerRepository.ExistsAsync(x => x.Email == form.Email))
+        {
+            var addressEntity = await _addressRepository.GetAsync(x => x.StreetName == form.StreetName || x.PostalCode ==form.PostalCode);
+        }
+       return true;
+
+    }
+
+
 
     //public async Task<CustomerEntity> UpdateCustomerAsync(CustomerEntity customerEntity)
     //{
@@ -51,3 +74,22 @@ internal class CustomerService
     //}
 
 }
+
+
+//public async Task<CustomerEntity> CreateCustomerAsync(CustomerEntity customerEntity)
+//{
+//    // get or create address
+//    var addressEntity = await _addressRepository.GetAsync(x => x.StreetName == customerEntity.Address.StreetName);
+//    addressEntity ??= await _addressRepository.CreateAsync(new AddressEntity { StreetName = customerEntity.Address.StreetName, StreetNumber = customerEntity.Address.StreetNumber, PostalCode = customerEntity.Address.PostalCode, City = customerEntity.Address.City });
+
+//    // get or create customer type
+//    var customerTypeEntity = await _customerTypeRepository.GetAsync(x => x.TypeName == customerEntity.CustomerType.TypeName);
+//    customerTypeEntity ??= await _customerTypeRepository.CreateAsync(new CustomerTypeEntity { TypeName = customerEntity.CustomerType.TypeName });
+
+//    customerEntity.AddressId = addressEntity.Id;
+//    customerEntity.CustomerTypeId = customerTypeEntity.Id;
+
+//    // create customer
+//    return await _customerRepository.CreateAsync(customerEntity);
+
+//}

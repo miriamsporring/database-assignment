@@ -10,6 +10,4 @@ internal class AddressRepository : Repo<AddressEntity>
         {
             _context = context;
         }
-
-
 }

@@ -66,3 +66,5 @@ C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-Supe
 C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-SuperYarnCompany\SuperYarnCompany\obj\Debug\net7.0\SuperYarnCompany.pdb
 C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-SuperYarnCompany\SuperYarnCompany\obj\Debug\net7.0\SuperYarnCompany.genruntimeconfig.cache
 C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-SuperYarnCompany\SuperYarnCompany\obj\Debug\net7.0\ref\SuperYarnCompany.dll
+C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-SuperYarnCompany\SuperYarnCompany\bin\Debug\net7.0\Elasticsearch.Net.dll
+C:\nackademin\Databasteknik\database-assigment\database-assignment\Solution-SuperYarnCompany\SuperYarnCompany\bin\Debug\net7.0\Nest.dll
