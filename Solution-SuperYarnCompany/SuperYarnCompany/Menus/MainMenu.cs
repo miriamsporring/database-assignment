@@ -28,7 +28,7 @@ internal class MainMenu
             {
                 case "1":
                     await ManageCustomer();
-                   break;
+                    break;
 
                 case "2":
                     await ManageProduct();
@@ -45,10 +45,7 @@ internal class MainMenu
         Console.Clear();
         Console.WriteLine("Customer Menu");
         Console.WriteLine("1. Add Customer");
-        Console.WriteLine("2. View Customer");
-        Console.WriteLine("3. View All Customers");
-        Console.WriteLine("4. Update Customer");
-        Console.WriteLine("5. Delete Customer");
+        Console.WriteLine("2. View All Customers");
         Console.Write("Choose one Option");
         var option = Console.ReadLine();
 
@@ -58,11 +55,11 @@ internal class MainMenu
                 await _customerMenu.CreateAsync();//ändra
                 break;
 
-            case "2":
-                await ManageCustomer(); //await _customerMenu.GetAll(); när jag gjort getAll
-                break;
-        }    
-       
+                //case "2":
+                //    await _customerMenu.GetAll();
+                //    break;
+        }
+
     }
 
 
@@ -71,10 +68,7 @@ internal class MainMenu
         Console.Clear();
         Console.WriteLine("Product Menu");
         Console.WriteLine("1. Add Product");
-        Console.WriteLine("2. View Product");
-        Console.WriteLine("3. View All Products");
-        Console.WriteLine("4. Update Product");
-        Console.WriteLine("5. Delete Product");
+        Console.WriteLine("2. View all Products");
         Console.Write("Choose one Option");
         var option = Console.ReadLine();
 
@@ -86,12 +80,14 @@ internal class MainMenu
 
 
             case "2":
-                await ManageProduct();
+                //await _productMenu.GetAllAsync();
                 break;
 
 
         }
 
+        //}
     }
+
 }
 

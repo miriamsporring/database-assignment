@@ -1,4 +1,7 @@
-﻿using Nest;
+﻿using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using Nest;
 using SuperYarnCompany.Entities;
 using SuperYarnCompany.Models;
 using SuperYarnCompany.Repositories;
@@ -30,88 +33,60 @@ internal class ProductService
                 Name = form.Name,
                 Description = form.Description,
                 Category = form.Category
-            });
-
+            });   
 
         }
         return true;
 
-
     }
+
+
+
+
+
+
+
+
+
+
+
+    //public async Task<Name> ViewAllProductsAsync(ProductRegistrationForm form)
+    //{
+    //    if (!await _productRepository.ExistsAsync(x => x.Name == form.Name))
+    //    {
+
+
+    //        var productEntity = await _productRepository.GetAllAscync(new ProductEntity()
+    //        {
+    //            Name = form.Name,
+    //            Description = form.Description,
+    //            Category = form.Category
+    //        });
+
+    //    }
+    //    return true!;
+    //}
 
 }
 
-    //internal Task<bool> CreateProductAsync(ProductRegistrationForm form)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
 
 
 
-
-    // get or create product
-
-
-    //if (!await _productRepository.ExistsAsync(x => x.Name == form.Name))
-
-    //    // get or create customer type
-
-    //{
-    //    var productEntity = await _productRepository.GetAsync(new ProductEntity);
-    //    productEntity = await _productRepository.CreateAsync(new ProductEntity { Name = form.Name, Description = form.Description, Category = form.Category });
+    //var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+    //    return user != null; // Returnerar true om användaren med den givna e-postadressen finns, annars false.
 
 
 
-    //}
-
-
-
-
-
-
-
-
-
-
-
-
-    //public async Task<ProductEntity> CreateProductAsync(ProductEntity productEntity)
-    //{
-    //    //hämta eller skapa en kategori som vi kan lägga till på produkten  
-    //    var categoryEntity = await _categoryRepository.GetAsync(x => x.CategoryName == productEntity.Category.CategoryName);
-    //    categoryEntity ??= await _categoryRepository.CreateAsync(new CategoryEntity { CategoryName = productEntity.Category.CategoryName });
-
-    //    // lägg till categoryEntity.Id till din productEntity
-    //    productEntity.CategoryId = categoryEntity.Id;
-
-    //    //create product
-    //    return await _productRepository.CreateAsync(productEntity);
-
-    //}
-
-    //internal Task<bool> CreateProductAsync(ProductRegistrationForm form)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
 
 //SE INSPELNING 15/11!!!
 
-//public async Task<ProductEntity> GetCustomerAsync(string email) 
-//{
 
-//}
 
-//public async Task<CustomerEntity> UpdateCustomerAsync(CustomerEntity customerEntity)
-//{
 
-//}
 
-//public async Task<bool> DeleteCustomerAsync(string email)
-//{
 
-//}
 
 
 

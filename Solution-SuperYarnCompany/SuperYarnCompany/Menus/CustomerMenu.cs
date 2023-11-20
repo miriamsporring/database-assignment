@@ -12,6 +12,7 @@ internal class CustomerMenu
         _customerService = customerService;
     }
 
+
     public async Task CreateAsync()
     {
         var form = new CustomerRegistrationForm();
